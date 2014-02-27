@@ -13,13 +13,16 @@ var makeQueue = function(){
   var tail = 0;
 
   instance.enqueue = function(value){
-      storage[tail++] = value;
+      storage[tail] = value;
+      tail++;
       size++;
   };
 
   instance.dequeue = function(){
       if (size > 0) {
-          var item = storage[head++];      
+          var item = storage[head];
+          delete storage[head];
+	  head++;
           size--;
           
           return item;
@@ -32,3 +35,5 @@ var makeQueue = function(){
 
   return instance;
 };
+
+
