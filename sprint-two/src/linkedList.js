@@ -1,43 +1,60 @@
 var makeLinkedList = function(){
   var list = {};
-  list._counter = 0;
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value){
+  list.addToTail = function(value) {
     //Add a new node to the list
     var newNode = makeNode(value);
-    //Check to see if head is null
-    // the first node
+    
+    // first time adding a node
     if (this.head === null) {
-      //If yes, add a node to list and point head to newnode, newnode.previous to head.
-      this.head = newNode;
-    }
-    //Point newnode.previous to what tail is pointing at
-     else {
-      newNode.previous = this.tail;
-      this.tail.next = newNode;
-     }
-    //Then set next on the current tail
-    this._counter++;
-    this[this._counter] = newNode;
-    //Then set tail to the new node.
-    this.tail = this[this._counter];
+      // if yes, add a node to list and point head to newnode
+        this.head = newNode;
+	this.tail = newNode;   
+    } 
+    
+    // first set current tail's next node as the newly created
+    this.tail.next = newNode;
+
+    // now set tail to the last node (which IS the new node)
+    this.tail = newNode;
+
   };
 
+  // 1. find head object and get value
   list.removeHead = function(){
-    //Save what head is pointing to in a transient value
-    //Set head.next.previous to head.
-    //Point Head to head.next
-    //Delete what that transient value is pointing to.
+    var headObj = this.head;
+    var value = headObj.value;
+
+    // 2. set head property to the next object
+    this.head = this.head.next
+    return value;
   };
 
-  list.contains = function(target, node){
-    //Use a map for each node, return an array of true or false
-    
-    //What's the difference between target and node? Why two parameters?
-    
-    //return the "any"
+  // list = {head: , tail: };
+  // {node1, next: node2 }
+  // {node2, next: node3 }
+  // {node3, next: null}
+  list.contains = function(target) {
+      // start off with the head of the list
+      node = this.head;
+     
+      var findValue = function (target, node) {
+          	  
+	  // if current node is undefined it means either
+	  // the list is empty or we are at the end of the list 
+	  if (node === null) {
+	      return false;
+	  } else if (target === node.value) {
+	      return true;
+	  } else {
+	      // pass in the NEXT linked node 
+	      return findValue(target, node.next);
+	  }
+      };
+
+      return findValue(target, node);
   };
 
   return list;
