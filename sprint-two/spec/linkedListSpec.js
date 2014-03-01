@@ -51,5 +51,21 @@ describe("linkedList", function() {
     assert.isFalse(linkedList.contains(4));
   });
 
+/******************************************************************************
+
+  Extra credit
+
+******************************************************************************/
+
+/*-----------------------------------------------------------------------------
+    Doubly linked list
+-----------------------------------------------------------------------------*/
+  // access the previous node using .previous
+  it("should access the parent node (previous) using .previous", function () {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.previous.value).to.equal(4);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
