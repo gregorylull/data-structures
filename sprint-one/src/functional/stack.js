@@ -3,25 +3,27 @@ var makeStack = function(){
 
   // Use an object with numeric keys to store values
   var storage = {};
-  var size = 0; // Hint: set an initial value here
+
+  storage['length'] = 0;
 
   // Implement the methods below
   instance.push = function(value){
-      storage[size++] = value;
-      return size;
+    storage[storage['length']] = value;
+    storage['length'] += 1;
   };
 
   // should return the item popped off, and that object property should be deleted
   instance.pop = function(){
-      if (size > 0 ) {
-        var item = storage[size-1];
-        delete storage[--size];
-        return item;
-      }
+    if(storage['length'] > 0) {
+      var transientvalue = storage[storage['length'] - 1];
+      delete storage[storage['length']];
+      storage['length'] -= 1;
+      return transientvalue;
+    }
   };
 
   instance.size = function(){
-      return size;
+    return storage['length'];
   };
 
   return instance;
