@@ -72,8 +72,33 @@ var makeLinkedList = function(){
       return findValue(target, node);
   };
 
+  list.removeNode = function (node) {
+    
+    // if there is a 'previous' node, change its 'next' property to current object's 'next' node
+    if (node.previous !== null) {
+      node.previous.next = node.next;
+
+    // if previous is null, then 'node' is the head
+    } else {
+      return node.removeHead();
+    }
+
+    // if there is a 'next' node, then set previous node's 'next' property to this's next node
+    if (node.next !== null) {
+      node.next.previous = node.previous;
+
+    // if the next node is null, then the current object is the tail 
+    } else {
+      return node.removeTail();
+    }
+
+    return node.value;
+  };
+
   return list;
 };
+
+
 
 var makeNode = function(value){
   //Don't change this code

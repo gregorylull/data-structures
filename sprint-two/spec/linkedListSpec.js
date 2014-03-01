@@ -88,6 +88,13 @@ describe("linkedList", function() {
      var val = linkedList.tail.value;
      expect(val).to.equal(4);
   });
-
+  it ("ME  should remove from anywhere", function () {
+      linkedList.addToTail(0);
+      linkedList.addToTail(1);
+      linkedList.addToTail(2);
+      linkedList.removeNode(linkedList.head.next);
+      var val = linkedList.head.next.value;
+      expect(val).to.equal(2);
+  });
   // add more tests here to test the functionality of linkedList
 });

@@ -44,4 +44,29 @@ describe("tree", function() {
     assert.isTrue(tree.contains(8));
   });
 
+/******************************************************************************
+  Extra Credit
+******************************************************************************/
+
+  it ("EC  should refer to the parent node using .parent", function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    expect(tree.children[1].parent).to.equal(tree.children[0].parent);
+  });
+
+  it ("EC  should refer to null when there are no parents", function () {
+    tree.addChild(1);
+    tree.addChild(1);
+    tree.children[0].addChild(2);
+    expect(tree.children[0].children[0].parent.parent.parent).to.equal(null);
+  });
+
+  it ("EC  should disassociate tree from parent", function () {
+    tree.addChild(1);
+    tree.children[0].addChild(2);
+    tree.children[0];
+  });
+
+  
+
 });
