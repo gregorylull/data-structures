@@ -23,13 +23,25 @@ treeMethods.addChild = function(value){
     this.children.push(treeChild);
 };
 
-treeMethods.contains = function(target){
-    
-    if (target === this.value) {
+treeMethods.contains = function(target) {
+    // if the current tree contains the value, return true
+    if ( target === this.value ) {
         return true;
+	
+    // return false if the current tree has no children (no more values to check!)
     } else if ( this.children === undefined ) {
         return false;
+
+    // else check the children array, which consists of tree objects.
+    // for each of those child tree objects, call .contains on it
     } else {
-        this.children.contains(target);
+
+	for (var i = 0; i < this.children.length; i++) {
+	    if (this.children[i].contains(target)) {
+		return true
+	    }
+	}
+
+	return false;
     }
 };

@@ -3,7 +3,6 @@ var makeStack = function(){
 
   // Use an object with numeric keys to store values
   var storage = {};
-
   storage['length'] = 0;
 
   // Implement the methods below
