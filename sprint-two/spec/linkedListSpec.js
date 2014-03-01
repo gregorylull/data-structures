@@ -61,10 +61,32 @@ describe("linkedList", function() {
     Doubly linked list
 -----------------------------------------------------------------------------*/
   // access the previous node using .previous
-  it("should access the parent node (previous) using .previous", function () {
+  it("EC  should access the parent node (previous) using .previous", function () {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
-    expect(linkedList.previous.value).to.equal(4);
+    expect(linkedList.tail.previous.value).to.equal(4);
+  });
+
+  it ("EC  should have its previous value set to null if its head", function () {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.removeHead();
+    expect(linkedList.head.previous).to.equal(null);
+  });
+
+  it ("EC  should return the tail object value when .removeTail is called", function () {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    var val = linkedList.removeTail();
+    expect(val).to.equal(5);
+  });
+
+  it ("EC  should have its tail property re directed after tail is removed", function () {
+     linkedList.addToTail(4);
+     linkedList.addToTail(5);
+     linkedList.removeTail();
+     var val = linkedList.tail.value;
+     expect(val).to.equal(4);
   });
 
   // add more tests here to test the functionality of linkedList
